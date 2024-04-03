@@ -26,7 +26,7 @@
             <tr>
                 <td>
                     <img src="{% if p.imagem %} {{p.imagem.url}}
-                                  {% else %} {% static 'imagens/notfound.jfif' %}
+                                  {% else %} {% static 'image/sem-foto.jpg' %}
                                   {% endif %}" alt="imagem de {{ p.nome }}">
                 </td>
                 <td>{{ p.nome }}</td>
