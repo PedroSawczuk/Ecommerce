@@ -14,17 +14,19 @@ class ProdutosListView(ListView):
     model = Produto
     template_name = 'produtos/listarprodutos.html'
     context_object_name = 'produtos'
-    queryset = Produto.disponiveis.all()
-    
-    def get_queryset(self, slugcat=None):
+    # queryset = Produto.disponiveis.all()
+
+    def get_queryset(self): # removi o parâmetro daqui
         qs = super().get_queryset()
-        if slugcat:
-            cat = Categoria.get(slug=slugcat)
+        slug = self.kwargs['slug'] # obtive o parâmetro dos argumentos passados na requisição
+        if slug:
+            cat = Categoria.objects.get(slug=slug) # acrescentei o objects.
             qs = qs.filter(categoria=cat)
         return qs
-    
-    def get_context_data(self, slugcat=None, **kwargs):
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if slugcat:
-            context['categoria'] = Categoria.objects.get(slug=slugcat)
+        slug = self.kwargs['slug']
+        if slug:
+            context['categoria'] = Categoria.objects.get(slug=slug)
         return context
