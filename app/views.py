@@ -30,3 +30,7 @@ class ProdutosListView(ListView):
         if slug:
             context['categoria'] = Categoria.objects.get(slug=slug)
         return context
+    
+class ProdutoDetailView(DetailView):
+    model = Produto
+    template_name = "produtos/produto.html"

@@ -25,10 +25,11 @@
             {% for p in produtos %}
             <tr>
                 <td>
-                    <img src="{% if p.imagem %} {{p.imagem.url}}
+                    <img style="width: 100px;" src="{% if p.imagem %} {{p.imagem.url}}
                                   {% else %} {% static 'image/sem-foto.jpg' %}
                                   {% endif %}" alt="imagem de {{ p.nome }}">
                 </td>
+                <td><a href="{% url 'detailproduto' p.slug p.id %}">{{ p.nome }}</a></td>
                 <td>{{ p.nome }}</td>
                 <td>{{ p.preco }}</td>
             </tr>
